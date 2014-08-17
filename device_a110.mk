@@ -16,41 +16,6 @@ $(call inherit-product-if-exists, vendor/micromax/a110/a110-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/
 
-# prebuilt kernel modules
-MOD_TGT := /system/lib/modules
-MOD_SRC := $(LOCAL_PATH)/prebuilt/modules
-PRODUCT_COPY_FILES += \
-	$(MOD_SRC)/ccci.ko:$(MOD_TGT)/ccci.ko \
-	$(MOD_SRC)/ccci_plat.ko:$(MOD_TGT)/ccci_plat.ko \
-	$(MOD_SRC)/ccmni.ko:$(MOD_TGT)/ccmni.ko \
-	$(MOD_SRC)/devapc.ko:$(MOD_TGT)/devapc.ko \
-	$(MOD_SRC)/devinfo.ko:$(MOD_TGT)/devinfo.ko \
-	$(MOD_SRC)/eeprom_93cx6.ko:$(MOD_TGT)/eeprom_93cx6.ko \
-	$(MOD_SRC)/hid-logitech-dj.ko:$(MOD_TGT)/hid-logitech-dj.ko \
-	$(MOD_SRC)/m4u.ko:$(MOD_TGT)/m4u.ko \
-	$(MOD_SRC)/mtk_fm_drv.ko:$(MOD_TGT)/mtk_fm_drv.ko \
-	$(MOD_SRC)/mtk_fm_priv.ko:$(MOD_TGT)/mtk_fm_priv.ko \
-	$(MOD_SRC)/mtk_hif_sdio.ko:$(MOD_TGT)/mtk_hif_sdio.ko \
-	$(MOD_SRC)/mtk_hif_sdio_mt6620.ko:$(MOD_TGT)/mtk_hif_sdio_mt6620.ko \
-	$(MOD_SRC)/mtklfb.ko:$(MOD_TGT)/mtklfb.ko \
-	$(MOD_SRC)/mtk_stp_bt.ko:$(MOD_TGT)/mtk_stp_bt.ko \
-	$(MOD_SRC)/mtk_stp_bt_mt6620.ko:$(MOD_TGT)/mtk_stp_bt_mt6620.ko \
-	$(MOD_SRC)/mtk_stp_gps.ko:$(MOD_TGT)/mtk_stp_gps.ko \
-	$(MOD_SRC)/mtk_stp_gps_mt6620.ko:$(MOD_TGT)/mtk_stp_gps_mt6620.ko \
-	$(MOD_SRC)/mtk_stp_uart.ko:$(MOD_TGT)/mtk_stp_uart.ko \
-	$(MOD_SRC)/mtk_stp_uart_mt6620.ko:$(MOD_TGT)/mtk_stp_uart_mt6620.ko \
-	$(MOD_SRC)/mtk_stp_wmt.ko:$(MOD_TGT)/mtk_stp_wmt.ko \
-	$(MOD_SRC)/mtk_stp_wmt_mt6620.ko:$(MOD_TGT)/mtk_stp_wmt_mt6620.ko \
-	$(MOD_SRC)/mtk_wmt_wifi.ko:$(MOD_TGT)/mtk_wmt_wifi.ko \
-	$(MOD_SRC)/mtk_wmt_wifi_mt6620.ko:$(MOD_TGT)/mtk_wmt_wifi_mt6620.ko \
-	$(MOD_SRC)/pvrsrvkm.ko:$(MOD_TGT)/pvrsrvkm.ko \
-	$(MOD_SRC)/scsi_tgt.ko:$(MOD_TGT)/scsi_tgt.ko \
-	$(MOD_SRC)/scsi_wait_scan.ko:$(MOD_TGT)/scsi_wait_scan.ko \
-	$(MOD_SRC)/sec.ko:$(MOD_TGT)/sec.ko \
-	$(MOD_SRC)/vcodec_kernel_driver.ko:$(MOD_TGT)/vcodec_kernel_driver.ko \
-	$(MOD_SRC)/wlan.ko:$(MOD_TGT)/wlan.ko \
-	$(MOD_SRC)/wlan_mt6620.ko:$(MOD_TGT)/wlan_mt6620.ko \
-	$(MOD_SRC)/wlan_mt6628.ko:$(MOD_TGT)/wlan_mt6628.ko
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/root/fstab.mt6577:root/fstab.mt6577
@@ -80,6 +45,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/media_profiles.xml:system/etc/media_profile.xml
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.adb.secure=0 \
+    ro.secure=0
 
 PRODUCT_PROPERTY_OVERRIDES := \
 	fmradio.driver.chip=3 \
