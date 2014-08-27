@@ -3,14 +3,15 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 #<src>         <mnt_point>   <type>   <mnt_flags and options>               <fs_mgr_flags>
-/dev/bootimg    /boot     emmc     defaults                               defaults
-/dev/recovery   /recovery     emmc     defaults                               defaults
-/dev/uboot      /uboot        emmc     defaults                               defaults
-/dev/misc	/misc	      emmc     defaults				      defaults
-/emmc@android   /system       ext4     rw,noatime                             wait
+/emmc@android   /system       ext4     ro,noatime                             wait
 /emmc@cache     /cache        ext4     noatime,nosuid,nodev,noauto_da_alloc   wait
 /emmc@usrdata   /data         ext4     noatime,nosuid,nodev,noauto_da_alloc   wait,encryptable=footer
 
 # For MT6577
-/devices/platform/mtk-sd.0/mmc_host/mmc0 auto auto defaults voldmanaged=sdcard0:6 
+/devices/platform/mtk-sd.0/mmc_host/mmc0 auto auto defaults voldmanaged=sdcard0:6,nonremovable,noemulatedsd
 /devices/platform/mtk-sd.1/mmc_host/mmc1 auto auto defaults voldmanaged=sdcard1:auto
+
+/dev/bootimg    /boot     emmc     defaults                               defaults
+/dev/recovery   /recovery     emmc     defaults                               defaults
+/dev/uboot      /uboot        emmc     defaults                               defaults
+/dev/misc	/misc	      emmc     defaults				      defaults
